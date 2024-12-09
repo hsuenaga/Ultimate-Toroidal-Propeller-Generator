@@ -70,14 +70,19 @@ module blades2D(n, height, length, width, thickness, hole_offset, blade_directio
     }
 }
 
-
 module blade2D (height, length, width, thickness, hole_offset){
+    outer_length = length;
+    inner_length = length - thickness * 2;
+
+    outer_scale = [1, width/length];
+    inner_scale = [1, (width - thickness * 2)/(length - thickness * 2)];
+
     difference(){
         translate([length/2,0,0])
-            scale([1, width/length]) circle(d=length);
+            scale(outer_scale) circle(d=outer_length);
 
         translate([length/2 + hole_offset,0,0])
-            scale([1, (width-thickness)/(length-thickness)]) circle(d=length-thickness);
+            scale(inner_scale) circle(d=inner_length);
     }
 }
 
