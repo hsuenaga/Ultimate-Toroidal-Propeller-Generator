@@ -19,6 +19,7 @@ module toroidal_propeller(
 ){
     l = height / tan(blade_attack_angle);
     p = 2 * PI * blade_length/2;
+    wall_thickness = blade_thickness / sin(blade_attack_angle);
 
     difference(){
         union(){
@@ -28,7 +29,7 @@ module toroidal_propeller(
                     height = height,
                     length = blade_length,
                     width = blade_width,
-                    thickness = blade_thickness,
+                    thickness = wall_thickness,
                     hole_offset = blade_hole_offset,
                     blade_direction = blade_attack_angle > 0 ? 1 : -1,
                     offset = blade_offset,
